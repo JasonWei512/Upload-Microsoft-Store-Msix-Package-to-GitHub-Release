@@ -23,7 +23,7 @@ public static class StoreHelper
     /// Get the list of the latest MSIX packages for different architectures (x64, arm64, etc.) from Microsoft Store without downloading them.
     /// </summary>
     /// <param name="storeID">The ID of the Microsoft Store app you want to upload, e.g. "9NF7JTB3B17P".</param>
-    public static async Task<IReadOnlyList<MsixPackage>> GetLatestMsixPacakgeList(string storeID)
+    public static async Task<IReadOnlyList<MsixPackage>> GetLatestMsixPackageList(string storeID)
     {
         DisplayCatalogHandler dcathandler = new(DCatEndpoint.Production, new Locale(Market.US, Lang.en, false));
 
@@ -54,14 +54,14 @@ public static class StoreHelper
             .SelectMany(x => x.Sku.Properties.Packages)
             .ToList();
 
-        if (allPackages.FirstOrDefault()?.PackageFamilyName is not string pacakgeFamilyName)
+        if (allPackages.FirstOrDefault()?.PackageFamilyName is not string packageFamilyName)
         {
             return new List<MsixPackage>();
         }
 
-        if (pacakgeFamilyName.Split("_").FirstOrDefault() is not string packageMonikerPrefix)
+        if (packageFamilyName.Split("_").FirstOrDefault() is not string packageMonikerPrefix)
         {
-            throw new Exception(@$"Cannot get package moniker prefix from package family name ""{pacakgeFamilyName}""");
+            throw new Exception(@$"Cannot get package moniker prefix from package family name ""{packageFamilyName}""");
         }
 
         Console.WriteLine("Getting app package list ...");

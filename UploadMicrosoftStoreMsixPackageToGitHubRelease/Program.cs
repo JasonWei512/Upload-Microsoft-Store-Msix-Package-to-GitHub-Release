@@ -25,7 +25,7 @@ async Task Start(Options options)
 
     // Start
 
-    IReadOnlyList<MsixPackage> msixPackages = await StoreHelper.GetLatestMsixPacakgeList(options.StoreID);
+    IReadOnlyList<MsixPackage> msixPackages = await StoreHelper.GetLatestMsixPackageList(options.StoreID);
 
     if (!msixPackages.Any())
     {
