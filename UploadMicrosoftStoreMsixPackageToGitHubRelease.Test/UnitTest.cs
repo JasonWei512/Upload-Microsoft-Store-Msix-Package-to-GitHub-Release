@@ -6,7 +6,7 @@ public class UnitTest
     [MemberData(nameof(TestData_CommonHelper_MsixPackageAndGitHubReleaseVersionsAreEqual_True))]
     public void CommonHelper_MsixPackageAndGitHubReleaseVersionsAreEqual_True(Version msixPackageVersion, string gitHubReleaseTagName)
     {
-        Assert.True(CommonHelper.MsixPackageAndGitHubReleaseVersionsAreEqual(msixPackageVersion, gitHubReleaseTagName));
+        Assert.True(VersionComparer.MsixPackageAndGitHubReleaseVersionsAreEqual(msixPackageVersion, gitHubReleaseTagName));
     }
 
     public static TheoryData<Version, string> TestData_CommonHelper_MsixPackageAndGitHubReleaseVersionsAreEqual_True => new()
@@ -26,7 +26,7 @@ public class UnitTest
     [MemberData(nameof(TestData_CommonHelper_MsixPackageAndGitHubReleaseVersionsAreEqual_False))]
     public void CommonHelper_MsixPackageAndGitHubReleaseVersionsAreEqual_False(Version msixPackageVersion, string gitHubReleaseTagName)
     {
-        Assert.False(CommonHelper.MsixPackageAndGitHubReleaseVersionsAreEqual(msixPackageVersion, gitHubReleaseTagName));
+        Assert.False(VersionComparer.MsixPackageAndGitHubReleaseVersionsAreEqual(msixPackageVersion, gitHubReleaseTagName));
     }
 
     public static TheoryData<Version, string> TestData_CommonHelper_MsixPackageAndGitHubReleaseVersionsAreEqual_False => new()

@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace UploadMicrosoftStoreMsixPackageToGitHubRelease;
 
-public static partial class CommonHelper
+public static partial class VersionComparer
 {
     /// <summary>
     /// A regex that matches a version string with 3 digits like "1.2.3".

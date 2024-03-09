@@ -24,7 +24,7 @@ public class GitHubHelper
         {
             if (await releases.GetLatest(gitHubRepoOwner, gitHubRepoName) is Release latestGitHubRelease)   // Might throw exception if not found
             {
-                if (CommonHelper.MsixPackageAndGitHubReleaseVersionsAreEqual(msixPackageVersion, latestGitHubRelease.TagName))
+                if (VersionComparer.MsixPackageAndGitHubReleaseVersionsAreEqual(msixPackageVersion, latestGitHubRelease.TagName))
                 {
                     return latestGitHubRelease;
                 }
@@ -35,7 +35,7 @@ public class GitHubHelper
         IReadOnlyList<Release> allGitHubReleases = await releases.GetAll(gitHubRepoOwner, gitHubRepoName);
         foreach (Release gitHubRelease in allGitHubReleases)
         {
-            if (CommonHelper.MsixPackageAndGitHubReleaseVersionsAreEqual(msixPackageVersion, gitHubRelease.TagName))
+            if (VersionComparer.MsixPackageAndGitHubReleaseVersionsAreEqual(msixPackageVersion, gitHubRelease.TagName))
             {
                 return gitHubRelease;
             }
