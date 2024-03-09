@@ -17,6 +17,9 @@ public class UnitTest
         { new Version("1.2.3.0"), "v1.2.3.0" },
         { new Version("1.2.3.0"), "v1.2.3" },
         { new Version("1.2.3.1"), "v1.2.3" },
+        { new Version("1.2.3.0"), "v1.2.3.dev" },
+        { new Version("1.2.3.23"), "v1.2.3.dev23" },
+        { new Version("1.2.3.1"), "v1.2.3.dev" },
     };
 
     [Theory]

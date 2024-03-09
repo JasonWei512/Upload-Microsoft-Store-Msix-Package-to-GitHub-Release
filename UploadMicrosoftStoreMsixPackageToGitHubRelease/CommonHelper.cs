@@ -15,6 +15,15 @@ public static class CommonHelper
         {
             gitHubReleaseVersionString = gitHubReleaseVersionString[1..];
         }
+        if (gitHubReleaseVersionString.EndsWith(".dev"))
+        {
+            gitHubReleaseVersionString = gitHubReleaseVersionString.Replace(".dev", "");
+        }
+        else if (gitHubReleaseVersionString.Contains(".dev"))
+        {
+            gitHubReleaseVersionString = gitHubReleaseVersionString.Replace(".dev", ".");
+        }
+
         Version gitHubReleaseVersion;
         try
         {
