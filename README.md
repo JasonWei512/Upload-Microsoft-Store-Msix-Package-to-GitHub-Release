@@ -3,16 +3,16 @@
 [![GitHub Action Marketplace](https://img.shields.io/badge/GitHub%20Action-Marketplace-red)](https://github.com/marketplace/actions/upload-microsoft-store-msix-package-to-github-release)
 [![GitHub Release](https://img.shields.io/github/v/release/JasonWei512/Upload-Microsoft-Store-MSIX-Package-to-GitHub-Release?label=Release)](https://github.com/JasonWei512/Upload-Microsoft-Store-MSIX-Package-to-GitHub-Release/releases/latest)
 
-A GitHub action to download the latest MSIX packages from Microsoft Store and upload them to an **existing** GitHub release with the same version tag. 
+A GitHub action to download the latest MSIX packages from Microsoft Store and upload them to an **existing** GitHub release with corresponding version tag. 
 
-The GitHub release tag name should contain at least 3 digits, like `x.y.z`.
+The GitHub release tag should contain at least 3 digits, in the format of `x.y.z`.
 
-For example, if the latest Microsoft Store package version is `1.2.3.0`, it will upload MSIX packges to the GitHub release with a tag like:
+For example, if the latest Microsoft Store package version is `1.2.3.0`, it will upload MSIX packages to the GitHub release whose tag contains `1.2.3`, such as:
 
 - `1.2.3`
 - `1.2.3.0`
 - `v1.2.3.dev`
-- `Version-1.2.3.0-preview`
+- `Version-1.2.3.0-Preview`
 
 
 # Quick Start
