@@ -1,33 +1,33 @@
+using System.Text.RegularExpressions;
+
 namespace UploadMicrosoftStoreMsixPackageToGitHubRelease;
 
-public static class CommonHelper
+public static partial class CommonHelper
 {
     /// <summary>
-    /// Only compares the first 3 digits and ignores the "v" prefix in GitHub tag name. <br/>
-    /// Example: <paramref name="msixPackageVersion"/> "1.2.3.4" is equal to <paramref name="gitHubReleaseTagName"/> "v1.2.3".
+    /// A regex that matches a version string with 3 digits like "1.2.3".
     /// </summary>
-    /// <param name="msixPackageVersion">Have 4 digits. Example: "1.2.3.4"</param>
-    /// <param name="gitHubReleaseTagName">Can have a "v" prefix. Can contain 3 or 4 digits. Example: "v1.2.3"</param>
+    [GeneratedRegex(@"\d+\.\d+\.\d+")]
+    private static partial Regex VersionRegex();
+
+    /// <summary>
+    /// Only compares the first 3 digits of <paramref name="msixPackageVersion"/> and <paramref name="gitHubReleaseTagName"/>. <br/>
+    /// Example: <paramref name="msixPackageVersion"/> "1.2.3.4" is equal to <paramref name="gitHubReleaseTagName"/> "v1.2.3-preview".
+    /// </summary>
+    /// <param name="msixPackageVersion">A version containing 4 digits. Example: "1.2.3.4"</param>
+    /// <param name="gitHubReleaseTagName">A valid version string should contain at least 3 digits. Example: "v1.2.3-preview"</param>
     public static bool MsixPackageAndGitHubReleaseVersionsAreEqual(Version msixPackageVersion, string gitHubReleaseTagName)
     {
-        string gitHubReleaseVersionString = new(gitHubReleaseTagName);
-        if (gitHubReleaseVersionString.StartsWith("v") || gitHubReleaseVersionString.StartsWith("V"))
+        Match versionRegexMatch = VersionRegex().Match(gitHubReleaseTagName);
+        if (!versionRegexMatch.Success)
         {
-            gitHubReleaseVersionString = gitHubReleaseVersionString[1..];
-        }
-        if (gitHubReleaseVersionString.EndsWith(".dev"))
-        {
-            gitHubReleaseVersionString = gitHubReleaseVersionString.Replace(".dev", "");
-        }
-        else if (gitHubReleaseVersionString.Contains(".dev"))
-        {
-            gitHubReleaseVersionString = gitHubReleaseVersionString.Replace(".dev", ".");
+            return false;
         }
 
         Version gitHubReleaseVersion;
         try
         {
-            gitHubReleaseVersion = new Version(gitHubReleaseVersionString);
+            gitHubReleaseVersion = new Version(versionRegexMatch.Value);
         }
         catch
         {
